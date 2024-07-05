@@ -12,14 +12,22 @@ RUN apt-get update && \
     numactl \
     gnupg2 \
     gpg-agent \
+    zlib1g-dev \
     rsync \
     sudo \
     unzip \
-    python3.10 \
+    python3 \
     python3-pip \
     python-is-python3 \
     wget && \
     apt-get clean && \
     rm -rf  /var/lib/apt/lists/*
 
+# install Miniforge
+RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" && bash Miniforge3-$(uname)-$(uname -m).sh -b && \
+    rm Miniforge3-$(uname)-$(uname -m).sh && \
+    echo ". /root/miniforge3/etc/profile.d/conda.sh && conda activate base" >> /etc/skel/.bashrc && \
+    echo ". /root/miniforge3/etc/profile.d/conda.sh && conda activate base" >> ~/.bashrc    
+
 WORKDIR /workspace
+

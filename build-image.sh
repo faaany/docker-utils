@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default variable values
-device="cuda"
+device="xpu"
 task="hf-dev"
 
 # Function to display script usage
@@ -9,8 +9,8 @@ usage() {
  echo "Usage: $0 [OPTIONS]"
  echo "Options:"
  echo " -h, --help            Display this help message"
- echo " -d, --device          Hardware Device[cuda, xpu]"
- echo " -t, --task         	  Task Name [hf-dev]"
+ echo " -d, --device          Hardware Device[xpu, cuda]"
+ echo " -t, --task            Task Name[hf-dev]"
 }
 
 has_argument() {

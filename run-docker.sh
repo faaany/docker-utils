@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default variable values
-device="cuda"
+device="xpu"
 task="hf-dev"
 workspace=${PWD}
 name="hf-dev"
@@ -11,8 +11,8 @@ usage() {
  echo "Usage: $0 [OPTIONS]"
  echo "Options:"
  echo " -h, --help            Display this help message"
- echo " -d, --device          Hardware Device[cuda, xpu]"
- echo " -t, --task         	  Task Name[hf-dev]"
+ echo " -d, --device          Hardware Device[xpu, cuda]"
+ echo " -t, --task            Task Name[hf-dev]"
  echo " -w, --workspace       The local directory to be mounted inside the container"
  echo " -n, --name            The container name"
 }
