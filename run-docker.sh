@@ -5,6 +5,7 @@ task="$2"
 workspace="$3"
 
 docker run -it \
+	--privileged \
 	-e http_proxy=${http_proxy} \
 	-e https_proxy=${https_proxy} \
 	-e no_proxy=${no_proxy} \
