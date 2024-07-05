@@ -76,16 +76,36 @@ handle_options() {
 # Main script execution
 handle_options "$@"
 
-docker run -it \
-	--privileged \
-	-e http_proxy=${http_proxy} \
-	-e https_proxy=${https_proxy} \
-	-e no_proxy=${no_proxy} \
-	-v ${HF_HOME}:/root/.cache/huggingface \
-	-v ${workspace}:/workspace \
-	-w /workspace \
-	--runtime=nvidia \
-	--gpus all \
-	--entrypoint /bin/bash \
-	--name ${name} \
-	fanli/${task}-${device}:latest
+
+if [[ $device == "cuda" ]]; then
+	docker run -it \
+		--privileged \
+		-e http_proxy=${http_proxy} \
+		-e https_proxy=${https_proxy} \
+		-e no_proxy=${no_proxy} \
+		-v ${HF_HOME}:/root/.cache/huggingface \
+		-v ${workspace}:/workspace \
+		-w /workspace \
+		--runtime=nvidia \
+		--gpus all \
+		--entrypoint /bin/bash \
+		--name ${name} \
+		fanli/${task}-${device}:latest
+elif [[ $device == "xpu" ]]; then
+	docker run -it \
+		--privileged  \
+		-e http_proxy=${http_proxy} \
+		-e https_proxy=${https_proxy} \
+		-e no_proxy=${no_proxy} \
+		-v ${HF_HOME}:/root/.cache/huggingface \
+		-v ${workspace}:/workspace \
+		-w /workspace \
+		--device=/dev/dri \
+		--ipc=host \
+		--entrypoint /bin/bash \
+		--name ${name} \
+		fanli/${task}-${device}:latest
+
+else
+	echo "the given device is not supported."
+fi

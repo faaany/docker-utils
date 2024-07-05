@@ -1,0 +1,25 @@
+FROM intel/oneapi-basekit:2024.2.0-devel-ubuntu22.04
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --fix-missing \
+    apt-utils \
+    build-essential \
+    ca-certificates \
+    clinfo \
+    curl \
+    git \
+    vim \
+    numactl \
+    gnupg2 \
+    gpg-agent \
+    rsync \
+    sudo \
+    unzip \
+    python3.10 \
+    python3-pip \
+    python-is-python3 \
+    wget && \
+    apt-get clean && \
+    rm -rf  /var/lib/apt/lists/*
+
+WORKDIR /workspace
