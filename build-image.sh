@@ -10,7 +10,7 @@ usage() {
  echo "Options:"
  echo " -h, --help            Display this help message"
  echo " -d, --device          Hardware Device[xpu, cuda]"
- echo " -t, --task            Task Name[hf-dev]"
+ echo " -t, --task            Task Name[hf-dev, ut]"
 }
 
 has_argument() {
