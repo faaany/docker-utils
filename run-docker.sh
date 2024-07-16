@@ -12,7 +12,7 @@ usage() {
  echo "Options:"
  echo " -h, --help            Display this help message"
  echo " -d, --device          Hardware Device[xpu, cuda]"
- echo " -t, --task            Task Name[hf-dev, ut]"
+ echo " -t, --task            Task Name[hf-dev, trans-ut]"
  echo " -w, --workspace       The local directory to be mounted inside the container"
  echo " -n, --name            The container name"
 }
