@@ -85,6 +85,7 @@ if [[ $device == "cuda" ]]; then
 		-e no_proxy=${no_proxy} \
 		-v ${HF_HOME}:/root/.cache/huggingface \
 		-v ${workspace}:/workspace \
+    -v /dev/shm:/dev/shm \
 		-w /workspace \
 		--runtime=nvidia \
 		--gpus all \

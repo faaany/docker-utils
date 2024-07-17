@@ -24,7 +24,8 @@ RUN apt-get update && \
 
 RUN pip install --no-cache-dir --upgrade pip
 
-ARG REF=main
+WORKDIR /usr/src
+ARG REF=0f67ba1d741d65b07d549daf4ee157609ce4f9c1
 RUN git clone https://github.com/huggingface/transformers && cd transformers && git checkout $REF
 
 RUN pip install --no-cache-dir ./transformers[deepspeed-testing]
@@ -52,7 +53,7 @@ RUN python3 -m pip uninstall -y deepspeed
 # This has to be run (again) inside the GPU VMs running the tests.
 # The installation works here, but some tests fail, if we don't pre-build deepspeed again in the VMs running the tests.
 # TODO: Find out why test fail.
-RUN DS_BUILD_CPU_ADAM=1 DS_BUILD_FUSED_ADAM=1 DS_BUILD_AIO=1 python3 -m pip install "deepspeed<=0.14.0" --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1
+RUN DS_BUILD_CPU_ADAM=1 DS_BUILD_FUSED_ADAM=1 python3 -m pip install "deepspeed<=0.14.0" --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1
 
 # The base image ships with `pydantic==1.8.2` which is not working - i.e. the next command fails
 RUN python3 -c "from deepspeed.launcher.runner import main"
