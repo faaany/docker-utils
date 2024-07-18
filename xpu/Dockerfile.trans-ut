@@ -32,8 +32,9 @@ RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/downloa
     echo ". /root/miniforge3/etc/profile.d/conda.sh && conda activate base" >> /etc/skel/.bashrc && \
     echo ". /root/miniforge3/etc/profile.d/conda.sh && conda activate base" >> ~/.bashrc    
 
-RUN pip install pyctcdecode timm pytesseract quanto peft autoawq optimum decord galore-torch auto-gptq aqlm gguf fire scikit-learn sentencepiece sacremoses nltk rouge_score hqq pytest-excel librosa soundfile g2p_en
-RUN pip install pretty_midi essentia resampy lomo-optim Levenshtein onnx pytest-excel openpyxl
+RUN pip install pyctcdecode timm pytesseract quanto peft autoawq optimum decord galore-torch auto-gptq aqlm gguf fire scikit-learn sentencepiece sacremoses nltk rouge_score hqq 
+RUN pip install pretty_midi essentia resampy lomo-optim Levenshtein onnx pytest-excel openpyxl librosa soundfile g2p_en
+RUN pip install peft phonemizer 
 RUN pip install natten==0.17.1+torch230cu121 -f https://shi-labs.com/natten/wheels/
 
 WORKDIR /workspace
